@@ -1,3 +1,6 @@
+import { useDispatch } from 'react-redux';
+import { addContact } from 'components/redux/contactsSlice';
+
 import PropTypes from 'prop-types';
 import { Formik } from 'formik';
 import { nanoid } from 'nanoid';
@@ -27,13 +30,19 @@ const ContactSchema = Yup.object().shape({
     .required('Required'),
 });
 
-export const ContactForm = ({ onSave }) => {
+export const ContactForm = () => {
+  const dispatch = useDispatch();
+
+  const handleSubmit = (value, id) => {
+    dispatch(addContact((id = nanoid()), value.name, value.number));
+  };
+
   return (
     <Formik
       initialValues={startValues}
       validationSchema={ContactSchema}
       onSubmit={(values, actions) => {
-        onSave({
+        handleSubmit({
           ...values,
           id: nanoid(),
         });
@@ -61,5 +70,5 @@ export const ContactForm = ({ onSave }) => {
 };
 
 ContactForm.propTypes = {
-  onSave: PropTypes.func.isRequired,
+  onSave: PropTypes.func,
 };
