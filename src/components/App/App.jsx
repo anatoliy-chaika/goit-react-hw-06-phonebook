@@ -1,5 +1,3 @@
-// import { useState, useEffect } from 'react';
-// import Notiflix from 'notiflix';
 import { Contactlist } from '../ContactList/ContactList';
 import { ContactForm } from '../ContactForm/ContactForm';
 import { FilterContacts } from 'components/Filter/Filter';
