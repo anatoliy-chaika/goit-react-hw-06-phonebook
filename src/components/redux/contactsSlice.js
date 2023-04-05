@@ -26,7 +26,7 @@ const contactsSlice = createSlice({
           );
           return state;
         } else {
-          return { contacts: [...state.contacts, action.payload] };
+          state.contacts.push(action.payload);
         }
       },
       prepare(id, name, number) {
